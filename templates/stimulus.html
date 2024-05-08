@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test de Réaction</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #reactionButton {
+            background-color: gray; /* Couleur initiale */
+            width: 100px; /* Largeur du carré */
+            height: 100px; /* Hauteur du carré */
+            cursor: not-allowed; /* Indique que le bouton n'est pas cliquable au début */
+            border: none;
+            border-radius: 8px;
+        }
+
+        #reactionButton.active {
+            background-color: green; /* La couleur devient verte après le délai */
+            cursor: pointer; /* Rendre le bouton cliquable */
+        }
+    </style>
+</head>
+<body>
+    <h1>Test de Réaction</h1>
+    <form action="{{ url_for('react') }}" method="post">
+        <input type="hidden" name="start_time" id="start_time" value="">
+        <button id="reactionButton" type="submit" disabled></button>
+    </form>
+    
+    <script>
+        // Injecter la valeur du délai directement dans JavaScript
+        var delayMilliseconds = {{ delay * 1000 }};
+        console.log("Délai en millisecondes :", delayMilliseconds);
+
+        // Fonction pour activer le bouton en le rendant vert et commencer le chrono
+        function activateButton() {
+            console.log("Activation du bouton...");
+            var reactionButton = document.getElementById('reactionButton');
+            var startTimeInput = document.getElementById('start_time');
+            
+            // Activer le bouton
+            reactionButton.classList.add('active');
+            reactionButton.removeAttribute('disabled');
+            reactionButton.style.cursor = "pointer";
+            
+            // Enregistrer l'heure de départ dans le champ caché
+            var startTime = new Date().getTime(); // Heure actuelle en millisecondes
+            startTimeInput.value = startTime;
+            console.log("Heure de départ:", startTime);
+        }
+
+        // Déclencher le changement après le délai aléatoire
+        setTimeout(function() {
+            console.log("Exécution de la fonction activateButton");
+            activateButton();
+        }, delayMilliseconds);
+    </script>
+</body>
+</html>
