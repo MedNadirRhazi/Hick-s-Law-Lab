@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Test de Réaction</title>
+    <title>Condition 1 (1 S-R)</title>
     <style>
         body {
             display: flex;
@@ -34,8 +34,8 @@
     </style>
 </head>
 <body>
-    <h1>Test de Réaction</h1>
-    <form action="{{ url_for('react') }}" method="post">
+    <h1>Condition 1 (1 S-R)</h1>
+    <form action="{{ url_for('react', condition_id=1) }}" method="post">
         <input type="hidden" name="start_time" id="start_time" value="">
         <button id="reactionButton" type="submit" disabled></button>
     </form>

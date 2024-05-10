@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Résultats</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Résultats pour Chaque Condition</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Condition</th>
+                <th>Temps de Réaction (s)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for condition, times in results.items() %}
+                {% for time in times %}
+                    <tr>
+                        <td>{{ condition }}</td>
+                        <td>{{ time }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+<form action="{{ url_for('index') }}">
+    <button type="submit">Retour à l'accueil</button>
+</form>
+</html>

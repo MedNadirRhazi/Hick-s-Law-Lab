@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Condition 2 (2 S-R)</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(2, 100px);
+            grid-gap: 10px;
+        }
+
+        .square {
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+            border: none;
+            cursor: not-allowed;
+            border-radius: 8px;
+        }
+
+        .square.active {
+            background-color: green;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Condition 2 (2 S-R)</h1>
+    <form action="{{ url_for('react', condition_id=2) }}" method="post">
+        <input type="hidden" name="start_time" id="start_time" value="">
+        <div id="grid">
+            {% for i in range(2) %}
+                <button class="square" id="square{{ i }}" name="square" type="submit" disabled></button>
+            {% endfor %}
+        </div>
+    </form>
+
+    <script>
+        // Fonction pour activer un carré aléatoirement
+        function activateRandomSquare() {
+            var startTimeInput = document.getElementById('start_time');
+            var squares = document.getElementsByClassName('square');
+            var randomIndex = Math.floor(Math.random() * squares.length);
+            var square = squares[randomIndex];
+
+            square.classList.add('active');
+            square.removeAttribute('disabled');
+            square.style.cursor = 'pointer';
+
+            var startTime = new Date().getTime();
+            startTimeInput.value = startTime;
+        }
+
+        // Délai en millisecondes
+        var delayMilliseconds = Math.random() * 3000 + 2000; // 2 à 5 secondes
+        setTimeout(activateRandomSquare, delayMilliseconds);
+    </script>
+</body>
+</html>
