@@ -13,22 +13,32 @@
             height: 100vh;
             margin: 0;
         }
-
+    
         h1 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 2vh; /* Utilise vh pour un espacement relatif à la hauteur de la fenêtre */
         }
-
+    
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 1vh 2vw; /* Padding vertical basé sur la hauteur du viewport, horizontal sur la largeur */
+            font-size: 1.6vh; /* Taille de police relative à la hauteur de la fenêtre */
             cursor: pointer;
+            border: none; /* Enlève la bordure par défaut */
+            background-color: #007BFF; /* Couleur de fond pour le bouton, choisis une couleur adaptée */
+            color: white; /* Couleur du texte */
+            border-radius: 5px; /* Coins arrondis */
+            transition: background-color 0.3s; /* Transition pour effet au survol */
+        }
+    
+        button:hover {
+            background-color: #0056b3; /* Changement de couleur au survol */
         }
     </style>
+    
 </head>
 <body>
     <h1>Bienvenue au Laboratoire #1 - APA 3520</h1>
-    <form action="{{ url_for('condition_1') }}">
+    <form action="{{ url_for('start_experiment') }}">
         <button type="submit">Commencer l'expérience</button>
     </form>
 </body>

@@ -6,10 +6,10 @@
         body {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            height: 130vh;
+            margin: auto;
         }
 
         table {
@@ -19,37 +19,59 @@
 
         th, td {
             border: 1px solid black;
-            padding: 8px;
+            padding: 0.5vw;
             text-align: center;
         }
 
         th {
             background-color: lightgray;
         }
+
+        button {
+            margin-top: 1vh;
+            padding: 1vh 2vw; /* Padding vertical basé sur la hauteur du viewport, horizontal sur la largeur */
+            font-size: 1.6vh; /* Taille de police relative à la hauteur de la fenêtre */
+            cursor: pointer;
+            border: none; /* Enlève la bordure par défaut */
+            background-color: #007BFF; /* Couleur de fond pour le bouton, choisis une couleur adaptée */
+            color: white; /* Couleur du texte */
+            border-radius: 5px; /* Coins arrondis */
+            transition: background-color 0.3s; /* Transition pour effet au survol */
+        }
+    
+        button:hover {
+            background-color: #0056b3; /* Changement de couleur au survol */
+        }
     </style>
 </head>
 <body>
-    <h1>Résultats pour Chaque Condition</h1>
+    <h1>Résultats pour chaque condition et essai / Results for each condition and trial</h1>
     <table>
         <thead>
             <tr>
+                <th>Trial / Essai</th>
                 <th>Condition</th>
-                <th>Temps de Réaction (s)</th>
+                <th>Reaction time / Temps de réaction (s)</th>
             </tr>
         </thead>
         <tbody>
-            {% for condition, times in results.items() %}
-                {% for time in times %}
-                    <tr>
-                        <td>{{ condition }}</td>
-                        <td>{{ time }}</td>
-                    </tr>
+            {% for essai in range(1, 6) %}
+                {% for condition, trials in results.items() %}
+                    {% if trials|length >= essai %}
+                        {% for time in trials[essai - 1] %}
+                            <tr>
+                                <td>{{ essai }}</td>
+                                <td>{{ condition }}</td>
+                                <td>{{ time }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
                 {% endfor %}
             {% endfor %}
         </tbody>
-    </table>
+    </table> 
+    <form action="{{ url_for('index') }}">
+        <button type="submit">Retour à l'accueil</button>
+    </form>
 </body>
-<form action="{{ url_for('index') }}">
-    <button type="submit">Retour à l'accueil</button>
-</form>
 </html>

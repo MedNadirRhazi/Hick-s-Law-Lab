@@ -21,17 +21,17 @@
 
         #grid {
             display: grid;
-            grid-template-columns: repeat(2, 100px);
-            grid-gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1vw;
         }
 
         .square {
-            width: 100px;
-            height: 100px;
+            width: 7vw;
+            height: 7vw;
             background-color: gray;
             border: none;
             cursor: not-allowed;
-            border-radius: 8px;
+            border-radius: 1vw;
         }
 
         .square.active {
@@ -41,7 +41,7 @@
     </style>
 </head>
 <body>
-    <h1>Condition 2 (2 S-R)</h1>
+    <h1>Essai {{trial}} - Condition 2 (2 S-R)</h1>
     <form action="{{ url_for('react', condition_id=2) }}" method="post">
         <input type="hidden" name="start_time" id="start_time" value="">
         <div id="grid">

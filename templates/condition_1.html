@@ -9,32 +9,32 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100vh; /* Utilise 100% de la hauteur de la fenêtre */
             margin: 0;
         }
-
+    
         h1 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 2vh; /* Utilise vh pour un espacement relatif à la hauteur de la fenêtre */
         }
-
+    
         #reactionButton {
             background-color: gray; /* Couleur initiale */
-            width: 100px; /* Largeur du carré */
-            height: 100px; /* Hauteur du carré */
+            width: 7vw; /* Largeur relative à la largeur de la fenêtre */
+            height: 7vw; /* Hauteur égale à la largeur pour maintenir la forme carrée */
             cursor: not-allowed; /* Indique que le bouton n'est pas cliquable au début */
             border: none;
-            border-radius: 8px;
+            border-radius: 1vw; /* Rayon arrondi relatif à la largeur de la fenêtre */
         }
-
+    
         #reactionButton.active {
             background-color: green; /* La couleur devient verte après le délai */
             cursor: pointer; /* Rendre le bouton cliquable */
         }
-    </style>
+    </style>    
 </head>
 <body>
-    <h1>Condition 1 (1 S-R)</h1>
+    <h1>Essai {{trial}} - Condition 1 (1 S-R)</h1>
     <form action="{{ url_for('react', condition_id=1) }}" method="post">
         <input type="hidden" name="start_time" id="start_time" value="">
         <button id="reactionButton" type="submit" disabled></button>
@@ -42,7 +42,7 @@
     
     <script>
         // Injecter la valeur du délai directement dans JavaScript
-        var delayMilliseconds = {{ delay * 1000 }};
+        var delayMilliseconds = Math.random() * 3000 + 2000;
         console.log("Délai en millisecondes :", delayMilliseconds);
 
         // Fonction pour activer le bouton en le rendant vert et commencer le chrono
