@@ -60,7 +60,9 @@
                     {% if trials|length >= essai %}
                         {% for time in trials[essai - 1] %}
                             <tr>
-                                <td>{{ essai }}</td>
+                                {% if condition =="Condition 1" %}
+                                    <td rowspan="4">{{ essai }}</td>
+                                {% endif %}
                                 <td>{{ condition }}</td>
                                 <td>{{ time }}</td>
                             </tr>
