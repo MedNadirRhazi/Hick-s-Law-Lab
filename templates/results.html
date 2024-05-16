@@ -42,10 +42,18 @@
         button:hover {
             background-color: #0056b3; /* Changement de couleur au survol */
         }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 20px;
+            gap: 30vh;
+        }
     </style>
 </head>
 <body>
-    <h1>Résultats pour chaque condition et essai / Results for each condition and trial</h1>
+    <h1>Results for each condition and trial / Résultats pour chaque condition et essai</h1>
     <table>
         <thead>
             <tr>
@@ -72,8 +80,13 @@
             {% endfor %}
         </tbody>
     </table> 
-    <form action="{{ url_for('index') }}">
-        <button type="submit">Retour à l'accueil</button>
-    </form>
+    <div class="button-container">
+        <form action="{{ url_for('index') }}">
+            <button class="button" type="submit">Back to Home / Retour à l'accueil</button>
+        </form>
+        <form action="/download-excel">
+            <button class="button" type="submit">Export / Exporter</button>
+        </form>
+    </div>
 </body>
 </html>

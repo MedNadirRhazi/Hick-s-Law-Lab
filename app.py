@@ -1,19 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, send_file
 import random
 import time
+import pandas as pd
 
 app = Flask(__name__)
 app.secret_key = 'une_cle_secrete_tres_complexe'
 
-# Variable pour stocker l'heure de début du stimulus
 start_time = None
-
-'''results = {
-    "Condition 1": [],
-    "Condition 2": [],
-    "Condition 3": [],
-    "Condition 4": []
-}'''
 
 @app.route('/')
 def index():
@@ -65,6 +58,31 @@ def react():
 def view_results():
     """Affiche un tableau des résultats pour chaque condition"""
     return render_template('results.html', results=session['results'])
+
+@app.route('/download-excel')
+def download_excel():
+    
+    data = []
+
+   
+    num_essais = len(next(iter(session['results'].values())))  
+    
+    for i in range(num_essais):
+        for condition, times in session['results'].items():
+            data.append({"Trial / Essai": f"Essai {i + 1}", "Condition": condition, "Reaction Time / Temps de Réaction (s)": times[i]})
+
+    for item in data:
+        if isinstance(item['Reaction Time / Temps de Réaction (s)'], list) and len(item['Reaction Time / Temps de Réaction (s)']) > 0:
+            item['Reaction Time / Temps de Réaction (s)'] = item['Reaction Time / Temps de Réaction (s)'][0]
+
+    df = pd.DataFrame(data)
+    excel_path = 'results.xlsx'
+
+    with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False)
+        
+    return send_file(excel_path, as_attachment=True, download_name='Results.xlsx')
+
 
 
 
