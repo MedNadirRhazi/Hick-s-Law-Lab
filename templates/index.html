@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lab #1 - APA 3520</title>
+    <title>Lab #1 - APA 3120/3520</title>
     <style>
-        /* Styles pour centrer le contenu */
         body {
             display: flex;
             flex-direction: column;
@@ -16,28 +15,76 @@
     
         h1 {
             text-align: center;
-            margin-bottom: 2vh; /* Utilise vh pour un espacement relatif à la hauteur de la fenêtre */
+            margin-bottom: 2vh; 
         }
-    
+        
+        table {
+            width: 90%; /* Utilise toute la largeur disponible */
+            border-collapse: collapse; /* Supprime les espaces entre les bordures des cellules */
+            margin-top: 2vh; /* Espace après le titre basé sur la hauteur de la fenêtre */
+        }
+        th, td {
+            border: 1px solid black; /* Bordures noires pour toutes les cellules */
+            padding: 1vw; /* Espacement à l'intérieur des cellules basé sur la largeur de la fenêtre */
+            text-align: center; /* Alignement du texte à gauche */
+        }
+        th {
+            background-color: #f2f2f2; /* Couleur de fond pour les en-têtes de tableau */
+        }
+        .highlightgreen {
+            background: rgb(5, 190, 5); 
+        }
+        .highlightgray {
+            background: rgb(151, 156, 151); 
+        }
         button {
-            padding: 1vh 2vw; /* Padding vertical basé sur la hauteur du viewport, horizontal sur la largeur */
-            font-size: 1.6vh; /* Taille de police relative à la hauteur de la fenêtre */
+            padding: 1vh 2vw; 
+            font-size: 1.6vh; 
             cursor: pointer;
-            border: none; /* Enlève la bordure par défaut */
-            background-color: #007BFF; /* Couleur de fond pour le bouton, choisis une couleur adaptée */
-            color: white; /* Couleur du texte */
-            border-radius: 5px; /* Coins arrondis */
-            transition: background-color 0.3s; /* Transition pour effet au survol */
+            border: none; 
+            background-color: #007BFF; 
+            color: white; 
+            border-radius: 5px; 
+            transition: background-color 0.3s; 
+            margin-top: 1vh;
         }
     
         button:hover {
-            background-color: #0056b3; /* Changement de couleur au survol */
+            background-color: #0056b3; 
         }
     </style>
     
 </head>
 <body>
-    <h1>Bienvenue au Laboratoire #1 - APA 3520</h1>
+    <h1>Welcome to Lab #1 / Bienvenue au Laboratoire #1 - APA 3120/3520</h1>
+    <table>
+        <tr>
+            <th>Information processing - Hick's Law</th>
+            <th>Traitement de l’information - Loi de Hick</th>
+        </tr>
+        <tr>
+            <td>
+                THIS EXPERIMENT IS TO BE COMPLETED ON A DEVICE WITH A TOUCHSCREEN (MNT 417 computers, phone, tablet).
+                <br>
+                <br>The experiment consists of 4 conditions (blocks of trials). The conditions differ with respect to the number of stimulus-response alternatives (i.e., 1, 2, 4 or 8 alternatives). There are 5 trials per conditions for a total of 20 trials.
+                <br>Please pool your data with at least 3 other students.
+                <br>
+                <br>The objective is to press the correct button as fast as possible. The correct button is the one that turns from <span class="highlightgray">grey</span> to <span class="highlightgreen">green</span>.
+                <br>
+                <br>Please refer to your lab manual for all other relevant information.
+            </td>
+            <td>
+                CETTE EXPÉRIENCE DOIT ÊTRE COMPLÉTÉE SUR UN APPAREIL AVEC UN ÉCRAN TACTILE (ordinateurs de MNT 417, cellulaire, tablette).
+                <br>
+                <br>L'expérience consiste en 4 conditions (blocs d'essais). Les conditions varient en fonction du nombre d'alternatives de réponse à un stimulus (c.-à-d., 1, 2, 4 ou 8 alternatives). Il y a 5 essais par conditions pour un total de 20 essais.
+                <br>Veuillez recueillir les données de 3 autres étudiants au minimum. 
+                <br>
+                <br>L’objectif est d’appuyer le plus rapidement possible sur le bouton indiqué par le changement de couleur (<span class="highlightgray">grey</span> à <span class="highlightgreen">green</span>).
+                <br>
+                <br>Veuillez vous référer au manuel de laboratoire pour toute autre information pertinente.
+            </td>
+        </tr>
+    </table>
     <form action="{{ url_for('start_experiment') }}">
         <button type="submit">Commencer l'expérience</button>
     </form>
