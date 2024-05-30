@@ -68,5 +68,5 @@ def download_excel():
         
     return send_file(excel_path, as_attachment=True, download_name='Results.xlsx')
 
-'''if __name__ == '__main__':
-    app.run(debug=True)'''
+if __name__ == '__main__':
+    app.run(debug=True)
