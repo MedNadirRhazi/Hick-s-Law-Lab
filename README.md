@@ -1,5 +1,7 @@
 # Hick-s-Law-Lab
 
+First download Python in your computer
+
 Navigate to project folder in terminal and run the following commands:
 
 pip install flask
